@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +19,6 @@ namespace ConsoleApp1
             }
         }
 
-
-
         public override string ToString()
         {
 
@@ -32,7 +30,6 @@ namespace ConsoleApp1
             {
 
                 for (int column = 1; column <= 9; column++)
-
                 {
 
                     sb.Append(this[row, column] + " ");
@@ -47,18 +44,13 @@ namespace ConsoleApp1
 
         }
 
-
-
         public void Solve()
-
         {
 
             for (int column = 1; column <= 9; column++)
-
             {
 
                 for (int row = 1; row <= 9; row++)
-
                 {
 
                     if (TrySolving(row, column))
@@ -71,12 +63,7 @@ namespace ConsoleApp1
 
                         System.Threading.Thread.Sleep(200);
 
-                        // restart
-
-                        row = 1;
-
-                        column = 1;
-
+                        
                     }
 
                 }
@@ -85,24 +72,18 @@ namespace ConsoleApp1
 
         }
 
-
-
         private bool TrySolving(int row, int column)
-
         {
 
             List<RowColumnValue> possibleValuesFound = new List<RowColumnValue>();
 
             if (this[row, column] == null)
-
             {
 
                 for (int possiblevalues = 1; possiblevalues <= 9; possiblevalues++)
-
                 {
 
                     if (!DoesRowContainValue(possiblevalues, row, column))
-
                     {
 
                         if (!DoesColumnContainValue(possiblevalues, row, column))
@@ -110,7 +91,6 @@ namespace ConsoleApp1
                         {
 
                             if (!DoesSquareContainValue(possiblevalues, row, column))
-
                             {
 
                                 possibleValuesFound.Add(new RowColumnValue(row, column, possiblevalues));
@@ -126,7 +106,6 @@ namespace ConsoleApp1
 
 
                 if (possibleValuesFound.Count == 1)
-
                 {
 
                     this[possibleValuesFound[0].Row, possibleValuesFound[0].Column] = possibleValuesFound[0].Value;
@@ -134,21 +113,13 @@ namespace ConsoleApp1
                     return true;
 
                 }
-
-
-
             }
-
-
 
             return false;
 
         }
 
-
-
         private bool DoesRowContainValue(int value, int row, int column)
-
         {
 
             for (int columnindex = 1; columnindex <= 9; columnindex++)
@@ -169,10 +140,7 @@ namespace ConsoleApp1
 
         }
 
-
-
         private bool DoesColumnContainValue(int value, int row, int column)
-
         {
 
             for (int rowindex = 1; rowindex <= 9; rowindex++)
@@ -194,7 +162,6 @@ namespace ConsoleApp1
         }
 
         private bool DoesSquareContainValue(int value, int row, int column)
-
         {
 
             //identify square
@@ -208,7 +175,7 @@ namespace ConsoleApp1
 
             int rowIndexEnd = rowStart * 3;
 
-            if (rowIndexEnd == 0) rowIndexEnd = 3;
+            
 
             int rowIndexStart = rowIndexEnd - 2;
 
@@ -216,7 +183,7 @@ namespace ConsoleApp1
 
             int columnIndexEnd = columnStart * 3;
 
-            if (columnIndexEnd == 0) columnIndexEnd = 3;
+            
 
             int columnIndexStart = columnIndexEnd - 2;
 
@@ -248,27 +215,7 @@ namespace ConsoleApp1
 
         public void PopulateGrid()
         {
-        //    int [] arr1 = { 0, 0, 6, 0, 0, 0, 0,
-        //0, 0, 0, 0, 0, 0, 3, 6, 5, 0, 0, 2, 3, 8, 0, 0, 4, 0,
-        //0, 0, 8, 7, 0, 0, 0, 0, 0, 0, 5, 0, 0, 3, 0, 9, 0, 2,
-        //0, 0, 4, 0, 0, 0, 0, 0, 0, 6, 8, 0, 0, 0, 4, 0, 0, 8,
-        //1, 9, 0, 0, 9, 3, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6,
-        //0, 0 };
-
-        //    int[] arr =
-        //        {
-        //    4,3,5,2,6,9,7,8,1,
-        //    6,8,2,5,7,1,4,9,3,
-        //    1,9,7,8,3,4,5,6,2,
-        //    8,2,6,1,9,5,3,4,7,
-        //    3,7,4,6,8,2,9,1,5,
-        //    9,5,1,7,4,3,6,2,8,
-        //    5,1,9,3,2,6,8,7,4,
-        //    2,4,8,9,5,7,1,3,6,
-        //    7,6,3,4,1,8,2,5,9
-        //    };
-
-
+        
             int?[] arr = 
                 {
             4,3,5,2,6,9,7,8,1,
@@ -292,15 +239,9 @@ namespace ConsoleApp1
 
             }
         }
-
-        public void PrintGrid()
-        {
-
-        }
     }
 
     internal class RowColumnValue
-
     {
 
         private int row;
@@ -355,17 +296,14 @@ namespace ConsoleApp1
             value = v;
 
         }
-
-        
-
     }
+
     class Program
     {
-        
-
-        private static SudokuGrid grid = new SudokuGrid();
+        //public SudokuGrid grid = new SudokuGrid();
         static void Main(string[] args)
         {
+            SudokuGrid grid = new SudokuGrid();
             grid.PopulateGrid();
             Console.WriteLine(grid.ToString());
             Console.WriteLine("Hit Enter to Begin Solving!!");
@@ -378,17 +316,5 @@ namespace ConsoleApp1
         }
 
         
-
-        //Of course, the fun part is in the "SudokuGrid" class itself. (Sorry the code is a bit lengthy) -
-
-
-
-
-        //The RowColumnValue holder class is as below -
-
-
-
     }
-
-
 }
